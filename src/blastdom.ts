@@ -2,7 +2,7 @@ import { BDomSchemaStore, StateStore } from './store';
 
 export class FramJetBlastDOM {
   static readonly #stateStore = new StateStore();
-  static readonly #schemaStore = new WeakMap<StateStore, BDomSchemaStore>();
+  static #schemaStore = new WeakMap<StateStore, BDomSchemaStore>();
 
   static getStateStore(): StateStore {
     return this.#stateStore;
@@ -20,5 +20,10 @@ export class FramJetBlastDOM {
     }
 
     return schemaStore;
+  }
+
+  static clear() {
+    this.#schemaStore = new WeakMap();
+    this.#stateStore.clear();
   }
 }

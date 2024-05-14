@@ -47,4 +47,8 @@ export class StateStore extends BaseObject {
 
     return store;
   }
+
+  clear() {
+    this.cellStateStore = new WeakMap();
+  }
 }
