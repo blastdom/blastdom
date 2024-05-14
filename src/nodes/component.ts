@@ -16,7 +16,7 @@ export interface ComponentBDomNode extends BaseBDomNode {
   readonly attrs: {
     name: string | BDomValue<string>;
   };
-  readonly props: Record<string, AnyBDomValue>;
+  readonly props?: Record<string, AnyBDomValue>;
   readonly children?: BDomNode[];
 }
 

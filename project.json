@@ -12,10 +12,14 @@
         "outputPath": "dist/blastdom",
         "main": "./src/index.ts",
         "tsConfig": "./tsconfig.lib.json",
-        "assets": [],
         "project": "./package.json",
         "compiler": "tsc",
-        "format": ["esm"]
+        "format": ["esm"],
+        "assets": [
+          {  "glob": "README.md", "input": ".", "output": "." },
+          {  "glob": "LICENSE", "input": ".", "output": "." },
+          {  "glob": "*.md", "input": ".", "output": "." }
+        ]
       }
     },
     "lint": {

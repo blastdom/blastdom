@@ -41,6 +41,7 @@ export class BDomSchemaState extends BaseObject {
   protected readonly _schemaNr: number;
   protected readonly cellStore: CellStore;
   protected readonly nodeStore: BDomNodeStore = new BDomNodeStore(this);
+  protected _processed = false;
 
   constructor(cellStore: CellStore, schema: BDomSchema, schemaNr: number) {
     super();
@@ -92,6 +93,10 @@ export class BDomSchemaState extends BaseObject {
     return this.schema.root;
   }
 
+  get processed(): boolean {
+    return this._processed;
+  }
+
   writeCell<T, TArgs extends unknown[], TResult>(
     cell: WritableCell<T, TArgs, TResult>,
     ...args: TArgs
@@ -100,6 +105,12 @@ export class BDomSchemaState extends BaseObject {
   }
 
   process(): void {
+    if (this._processed) {
+      this.getLogger().atWarn().log('BDomSchema is already processed');
+
+      return;
+    }
+
     this.getNodeStore().parse(
       this.rootNode,
       undefined,
