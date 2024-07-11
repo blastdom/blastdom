@@ -13,6 +13,8 @@ export interface BaseBDomNode extends BaseBDomItem<'$$n'> {
 
 export type BDomNode = BDomNodeMap[keyof BDomNodeMap];
 
+export type BDomNodeTypes = BDomNode['$$n'];
+
 export interface RenderBDomNodeProps<T extends BaseBDomNode> {
   node: T;
   parentNode: BDomNode | undefined;

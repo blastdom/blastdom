@@ -5,6 +5,7 @@ import type {
   BaseBDomValue,
   BDomNode,
   BDomNodeId,
+  BDomNodeTypes,
   FieldSettings,
 } from '../types';
 import {
@@ -83,6 +84,10 @@ export class BDomNodeState extends BaseStateObject {
 
   get nodeId(): BDomNodeId {
     return this._node.id;
+  }
+
+  get type(): BDomNodeTypes {
+    return this._node['$$n'];
   }
 
   get path(): Path {
@@ -173,6 +178,20 @@ export class BDomNodeState extends BaseStateObject {
 
   getScopedValue(name: string): AnyScopeCell {
     return this.getScopedValueContainer().get(name);
+  }
+
+  findParentNode(nodeType: BDomNodeTypes): BDomNodeState | undefined {
+    const parentNodeState = this.getParentNodeState();
+
+    if (parentNodeState === undefined) {
+      return undefined;
+    }
+
+    if (parentNodeState.type === nodeType) {
+      return parentNodeState;
+    }
+
+    return parentNodeState.findParentNode(nodeType);
   }
 
   createScopedValue(
