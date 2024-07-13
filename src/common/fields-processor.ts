@@ -25,7 +25,7 @@ export class FieldsProcessor {
 
           const defaultValue: unknown = fieldOptions.defaultValue;
           if (defaultValue === undefined) {
-            return schemaState.processValue([], nodeStateRef, fieldPath);
+            return schemaState.processValue(undefined, nodeStateRef, fieldPath);
           } else {
             if (Objects.isType(defaultValue, 'array') === false) {
               throw new Error(
@@ -62,7 +62,7 @@ export class FieldsProcessor {
 
           const defaultValue: unknown = fieldOptions.defaultValue;
           if (defaultValue === undefined) {
-            return schemaState.processValue({}, nodeStateRef, fieldPath);
+            return schemaState.processValue(undefined, nodeStateRef, fieldPath);
           } else {
             if (Objects.isType(defaultValue, 'object') === false) {
               throw new Error(
