@@ -184,29 +184,63 @@ export class BDomSchemaState extends BaseObject {
       refNodeState = this.getNodeState(refPath.nodeId);
     }
 
+    let result: Cell<AnyStateCell | undefined>;
+
     if (
       refPath instanceof NodeScopeRefPath ||
       refPath instanceof ScopeRefPath
     ) {
-      return refNodeState.getScopedValue(refPath.name);
-    }
-
-    if (refPath instanceof NodeAttrRefPath || refPath instanceof AttrRefPath) {
-      return refNodeState.getAttribute(refPath.name);
-    }
-
-    if (refPath instanceof NodePropRefPath || refPath instanceof PropRefPath) {
-      return refNodeState.getProperty(refPath.name);
-    }
-
-    if (refPath instanceof NodeRefPath || refPath instanceof PathRefPath) {
-      return cell(() =>
+      result = refNodeState.getScopedValue(refPath.name);
+    } else if (
+      refPath instanceof NodeAttrRefPath ||
+      refPath instanceof AttrRefPath
+    ) {
+      result = refNodeState.getAttribute(refPath.name);
+    } else if (
+      refPath instanceof NodePropRefPath ||
+      refPath instanceof PropRefPath
+    ) {
+      result = refNodeState.getProperty(refPath.name);
+    } else if (
+      refPath instanceof NodeRefPath ||
+      refPath instanceof PathRefPath
+    ) {
+      result = cell(() =>
         this.processValue(refNodeState.node, nodeStateRef, parentPath),
+      );
+    } else {
+      throw new Error(
+        `Field at "${parentPath.toStringPath()}" is not valid BDomRef selector`,
       );
     }
 
-    throw new Error(
-      `Field at "${parentPath.toStringPath()}" is not valid BDomRef selector`,
-    );
+    if (refPath.path == null) {
+      return result;
+    }
+
+    return cell((getter) => {
+      const stateCell = getter(result);
+      if (stateCell == undefined) {
+        return undefined;
+      }
+
+      return cell((getter2) => {
+        const valueCell = getter2(stateCell);
+
+        if (valueCell === undefined) {
+          return undefined;
+        }
+
+        return cell((getter3) => {
+          const value = getter3(valueCell);
+
+          if (value === undefined) {
+            return undefined;
+          }
+
+          return Objects.get(value, refPath.path as never);
+        });
+      }) as AnyStateCell;
+    });
   }
 }
