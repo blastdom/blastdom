@@ -4,6 +4,7 @@ export * from './action-exec';
 export * from './array';
 export * from './component';
 export * from './event';
+export * from './format';
 export * from './node';
 export * from './object';
 export * from './ref';

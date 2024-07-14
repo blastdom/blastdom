@@ -43,6 +43,7 @@ import type {
   ArrayBDomValue,
   ComponentBDomValue,
   EventBDomValue,
+  FormatBDomValue,
   NodeBDomValue,
   ObjectBDomValue,
   RefBDomValue,
@@ -90,6 +91,7 @@ export interface BDomValueMap {
   ArrayBDomValue: AnyArrayBDomValue;
   ComponentBDomValue: ComponentBDomValue;
   EventBDomValue: EventBDomValue;
+  FormatBDomValue: FormatBDomValue;
   NodeBDomValue: NodeBDomValue;
   ObjectBDomValue: AnyObjectBDomValue;
   RefBDomValue: AnyRefBDomValue;
@@ -105,6 +107,7 @@ export interface BDomValueSpecificMap<TValue> {
   EventBDomValue: TValue extends React.EventHandler<never>
     ? EventBDomValue
     : never;
+  FormatBDomValue: TValue extends string ? FormatBDomValue : never;
   ObjectBDomValue: TValue extends Record<PropertyKey, unknown>
     ? ObjectBDomValue<TValue>
     : never;

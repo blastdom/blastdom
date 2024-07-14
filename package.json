@@ -1,6 +1,6 @@
 {
   "name": "blastdom",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "license": "MIT",
   "author": "Aurimas Niekis <aurimas@niekis.lt>",
   "homepage": "https://github.com/blastdom/blastdom#readme",
@@ -28,7 +28,7 @@
   "dependencies": {
     "@framjet/cell": "^0.1.3",
     "@framjet/cell-react": "^0.1.2",
-    "@framjet/common": "^0.1.2",
+    "@framjet/common": "^0.1.3",
     "@framjet/logger": "^0.2.6",
     "@framjet/types": "^0.1.0",
     "date-fns": "^3.6.0",

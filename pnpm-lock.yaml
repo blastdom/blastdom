@@ -13,10 +13,10 @@ importers:
         version: 0.1.3
       '@framjet/cell-react':
         specifier: ^0.1.2
-        version: 0.1.2(@framjet/common@0.1.2)(react@19.0.0-beta-04b058868c-20240508)
+        version: 0.1.2(@framjet/common@0.1.3)(react@19.0.0-beta-04b058868c-20240508)
       '@framjet/common':
-        specifier: ^0.1.2
-        version: 0.1.2
+        specifier: ^0.1.3
+        version: 0.1.3
       '@framjet/logger':
         specifier: ^0.2.6
         version: 0.2.6
@@ -902,8 +902,8 @@ packages:
   '@framjet/cell@0.1.3':
     resolution: {integrity: sha512-85UCy3CMpcKLbLLVIf6h4dEDB8i/CXqVuRSXgcMIm9UDhnghzyUBLAQHyARisyJyBWNGtBQYTx84XXc08sDOxA==}
 
-  '@framjet/common@0.1.2':
-    resolution: {integrity: sha512-tXAN2H9a5FuVAzmBx4cFbw5gOEw6zngPW2ZzHmExwu8KwK2Jvsg/kb3WDBHUDes/BLLd3nGW7razB4FGPl2gfg==}
+  '@framjet/common@0.1.3':
+    resolution: {integrity: sha512-cu7h8N9enLknNcW0oN4AzJvDHi9Zmno7pOivINCqudN2h6JaR1nv3JFAWB+lHqwJD7PgO3yofK5oK8zr0aLBhQ==}
 
   '@framjet/logger@0.2.6':
     resolution: {integrity: sha512-mrFc4P/oNAXKimGMMTduFFZN3Ipwijrr30A3rjK6XXzc+tTxQUFLF2z4SjoXPwAt35QiBIDXHgft2KGxYddbBw==}
@@ -4396,15 +4396,15 @@ snapshots:
 
   '@eslint/js@8.57.0': {}
 
-  '@framjet/cell-react@0.1.2(@framjet/common@0.1.2)(react@19.0.0-beta-04b058868c-20240508)':
+  '@framjet/cell-react@0.1.2(@framjet/common@0.1.3)(react@19.0.0-beta-04b058868c-20240508)':
     dependencies:
       '@framjet/cell': 0.1.3
-      '@framjet/common': 0.1.2
+      '@framjet/common': 0.1.3
       react: 19.0.0-beta-04b058868c-20240508
 
   '@framjet/cell@0.1.3': {}
 
-  '@framjet/common@0.1.2':
+  '@framjet/common@0.1.3':
     optionalDependencies:
       react: 18.3.1
 
