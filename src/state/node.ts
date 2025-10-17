@@ -240,16 +240,14 @@ export class BDomNodeState extends BaseStateObject {
       const nodeStateRef = this.createRef();
       const cellSetter = createCellSetter(this._schemaState);
 
-      const attrFields = this._definition.attributes as Record<
-        string,
-        FieldSettings
-      >;
+      const attrFields =
+        (this._definition.attributes as Record<string, FieldSettings>) ?? {};
       Objects.entries(this._nodeAttributes.getFields()).forEach(
         ([key, value]) => {
           const stateCell = FieldsProcessor.processField(
             key,
             attrFields[key],
-            (this._node.attrs as Record<string, unknown>)[key],
+            (this._node.attrs as Record<string, unknown>)?.[key],
             value.owner,
             nodeStateRef,
           );
