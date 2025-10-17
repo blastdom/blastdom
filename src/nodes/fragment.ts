@@ -14,7 +14,12 @@ function findAndReplace(
   value: unknown,
   strings: Record<string, string>,
 ): unknown {
-  const re = new RegExp(Object.keys(strings).join('|'), 'gi');
+  const keys = Object.keys(strings);
+  if (keys.length === 0) {
+    return value;
+  }
+
+  const re = new RegExp(keys.join('|'), 'gi');
   const matched = (matched: string) => {
     const replacement = strings[matched];
 
