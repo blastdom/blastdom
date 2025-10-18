@@ -62,7 +62,7 @@ export class FieldsContainer {
         Objects.entries(this.fieldsStorage).map(([k, v]) => {
           const stateCell = get(v);
           const valueCell = get(stateCell);
-          const value = get(valueCell);
+          const value = valueCell != null ? get(valueCell) : undefined;
 
           return [k, value];
         }),
